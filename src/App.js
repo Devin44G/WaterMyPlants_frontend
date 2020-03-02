@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
+import Home from "./components/Home";
+import SignUp from './components/SignUp';
+import { Route } from 'react-router-dom';
 import './App.css';
 
 function App() {
 
-  const [login, setLogin] = useState([]);
-
-  const checkLogin = log => {
-    const newLogin = {
-      id: Date.now(),
-      user: log.user,
-      pass: log.pass
-    };
-    setLogin([...login, newLogin]);
-  };
-
   return (
     <div className="App">
-      {/* BUILD APP */}
-      <h1>Water my Plants!</h1>
-      <LoginForm checkLogin={checkLogin} />
+      <Navigation/>
+      <Route exact path="/" component={Home} />
+        <Route path="/LoginForm" component={LoginForm} />
+        <Route path="/SignUp" component={SignUp} />
     </div>
   );
 }

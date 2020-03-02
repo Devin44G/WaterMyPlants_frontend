@@ -1,27 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-const Ss = styled.button`
-  height: 30px;
-  background: orange;
-  color: black;
-  border: 0;
-  margin: 5px 10px;
-`;
+import { Ss, Ii, Ll, Main } from './../styles'
 
-const Ii = styled.input`
-  width: 200px;
-  padding: 15px 22px;
-  margin: 10px 5px;
-  box-sizing: border-box;  
-  border: 1px solid #ff65a3;
-  border-radius: 4px;
-  `;
-
-  const Ll = styled.label`
-  margin-bottom: -12px;
-  text-align: left;
-  width: 200px;
-  `;
 
 const LoginForm = props => {
   console.log("props", props);
@@ -29,6 +8,17 @@ const LoginForm = props => {
     user: "",
     pass: ""
   });
+
+  const [login, setLogin] = useState([]);
+
+  const checkLogin = log => {
+    const newLogin = {
+      id: Date.now(),
+      user: log.user,
+      pass: log.pass
+    };
+    setLogin([...login, newLogin]);
+  };
 
   const handleChanges = e => {
     console.log(log);
@@ -44,7 +34,10 @@ const LoginForm = props => {
     setLog({ user: "", pass: "" });
   };
 
+  
+
   return (
+    <Main>
     <form onSubmit={submitForm}>
       <Ll htmlFor="user">User</Ll>
       <Ii
@@ -64,6 +57,7 @@ const LoginForm = props => {
       />
       <Ss type="submit">Login</Ss>
     </form>
+    </Main>
   );
 };
 
