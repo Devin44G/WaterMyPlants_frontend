@@ -3,6 +3,7 @@ import axios from 'axios';
 import { axiosWithAuth } from './utils/axiosWithAuth';
 
 export const UserContext = createContext();
+export const PlantContext = createContext();
 
 export const UserProvider = props => {
   const [userCred, setUserCred] = useState({
@@ -10,23 +11,25 @@ export const UserProvider = props => {
     password: '',
     phone_number: ''
   });
-  const id = localStorage.getItem('userID');
-    console.log('User ID: ', id);
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/users/${id}`)
-      .then(res => {
-        console.log('Data from useEffect: ', res.data);
-        setUser(res.data);
-      })
-      .catch(err => `Error of type: ${err} has been thrown`);
-  }, []);
+  const [user, setUser] = useState({
+    id: '',
+    username: '',
+    phone_number: ''
+  });
 
   return(
     <UserContext.Provider value={[userCred, setUserCred], [user, setUser]}>
       {props.children}
     </UserContext.Provider>
+  );
+};
+
+export const PlantProvider = props => {
+  const [plants, setPlants] = useState([]);
+
+  return(
+    <PlantContext.Provider value={[plants, setPlants]}>
+      {props.children}
+    </PlantContext.Provider>
   );
 };
