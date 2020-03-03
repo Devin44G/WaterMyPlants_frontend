@@ -37,7 +37,7 @@ const LoginForm = props => {
     axiosWithAuth()
       .post('/api/auth/login', userCred)
       .then(res => {
-        window.localStorage.setItem('token', res.data.payload);
+        window.localStorage.setItem('token', res.data.token);
         props.history.push("/protected");
         console.log('Data after login: ', res);
       })
