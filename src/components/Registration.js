@@ -28,17 +28,17 @@ const Ll = styled.label`
   width: 200px;
   `;
 
-const LoginForm = props => {
+const Registration = props => {
   const [userCred, setUserCred] = useContext(UserContext);
-  console.log('Context:', userCred);
+    // userCred.phone_number = parseInt(userCred.phone_number);
+    console.log('Context:', userCred);
 
-  const loginHandler = e => {
+  const regHandler = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .post('/api/auth/login', userCred)
+    axios
+      .post('/api/auth/register', userCred)
       .then(res => {
-        window.localStorage.setItem('token', res.data.payload);
-        props.history.push("/protected");
+        props.history.push("/login");
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
@@ -58,7 +58,7 @@ const LoginForm = props => {
   // };
 
   return (
-    <form onSubmit={loginHandler}>
+    <form onSubmit={regHandler}>
       <Ll htmlFor="user">User</Ll>
       <Ii
         id="user"
@@ -75,17 +75,17 @@ const LoginForm = props => {
         onChange={handleChanges}
         value={userCred.password}
       />
-      {/* <Ll htmlFor="phone">Phone</Ll>
-        <Ii
+      <Ll htmlFor="phone">Phone</Ll>
+      <Ii
         id="phone"
         type="number"
         name="phone_number"
         onChange={handleChanges}
         value={userCred.phone_number}
-      /> */}
+      />
       <Ss type="submit">Login</Ss>
     </form>
   );
 };
 
-export default LoginForm;
+export default Registration;
