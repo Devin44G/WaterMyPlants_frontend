@@ -38,7 +38,6 @@ export const Ll = styled.label`
 export const Main = styled.div`
     background-image:url(${img});
     height:100%;
-    background-size: 1000px 666px;
     background-repeat: no-repeat;
 `;
 
