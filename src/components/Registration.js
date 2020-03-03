@@ -30,7 +30,7 @@ const Ll = styled.label`
 
 const Registration = props => {
   const [userCred, setUserCred] = useContext(UserContext);
-    // userCred.phone_number = parseInt(userCred.phone_number);
+    userCred.phone_number = parseInt(userCred.phone_number);
     console.log('Context:', userCred);
 
   const regHandler = e => {
