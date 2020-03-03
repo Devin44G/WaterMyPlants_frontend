@@ -35,7 +35,7 @@ const Registration = props => {
 
   const regHandler = e => {
     e.preventDefault();
-    axios
+    axiosWithAuth()
       .post('/api/auth/register', userCred)
       .then(res => {
         props.history.push("/login");
