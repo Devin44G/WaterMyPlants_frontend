@@ -38,7 +38,8 @@ const LoginForm = props => {
       .post('/api/auth/login', userCred)
       .then(res => {
         window.localStorage.setItem('token', res.data.token);
-        props.history.push("/protected");
+        window.localStorage.setItem('userID', res.data.id)
+        props.history.push('/dashboard');
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));

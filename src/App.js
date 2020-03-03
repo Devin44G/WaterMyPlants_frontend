@@ -18,7 +18,7 @@ function App() {
           <PrivateRoute exact path="/plant/:id" />
           <PrivateRoute exact path="/add-plant" />
         <PrivateRoute exact path="/edit-plant/:id" /> */}
-        <PrivateRoute path="/protected" component={Test} />
+        <Route path="/dashboard" component={Test} />
       </div>
     </UserProvider>
   );
