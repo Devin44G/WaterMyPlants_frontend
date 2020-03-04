@@ -26,9 +26,14 @@ form{
   flex-direction: column;
   display:flex;
   width:300px;
-  margin-left: 300px;
+  margin-left: 20%;
   padding-top: 100px;
   text-align: center;
+}
+
+form span {
+margin-left:-87px;
+color:rgb(114, 0, 0)
 }
 
 .navlinks{
