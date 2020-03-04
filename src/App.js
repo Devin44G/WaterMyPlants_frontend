@@ -4,7 +4,6 @@ import { UserProvider } from './UserContext';
 
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
-import Home from "./components/Home";
 import SignUp from './components/SignUp';
 import Registration from './components/Registration';
 import PrivateRoute from './routes/PrivateRoute';

@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { Ss, Ii, Ll, Main } from './../styles'
-import styled from "styled-components";
-import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../UserContext';
 
@@ -46,7 +44,7 @@ const LoginForm = props => {
       <Ll htmlFor="pass">Password</Ll>
       <Ii
         id="pass"
-        type="text"
+        type="password"
         name="password"
         onChange={handleChanges}
         value={userCred.password}
