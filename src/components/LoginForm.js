@@ -1,32 +1,10 @@
 import React, { useContext } from "react";
+import { Ss, Ii, Ll, Main } from './../styles'
 import styled from "styled-components";
 import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../UserContext';
 
-
-const Ss = styled.button`
-  height: 30px;
-  background: orange;
-  color: black;
-  border: 0;
-  margin: 5px 10px;
-`;
-
-const Ii = styled.input`
-  width: 200px;
-  padding: 15px 22px;
-  margin: 10px 5px;
-  box-sizing: border-box;
-  border: 1px solid #ff65a3;
-  border-radius: 4px;
-  `;
-
-const Ll = styled.label`
-  margin-bottom: -12px;
-  text-align: left;
-  width: 200px;
-  `;
 
 const LoginForm = props => {
   const [userCred, setUserCred] = useContext(UserContext);
@@ -51,16 +29,13 @@ const LoginForm = props => {
       [e.target.name]: e.target.value
     });
   };
-  //
-  // const submitForm = e => {
-  //   e.preventDefault();
-  //   props.checkLogin(log);
-  //   setLog({ user: "", pass: "" });
-  // };
+
+
 
   return (
+    <Main>
     <form onSubmit={loginHandler}>
-      <Ll htmlFor="user">User</Ll>
+      <Ll htmlFor="user">Email</Ll>
       <Ii
         id="user"
         type="text"
@@ -78,6 +53,7 @@ const LoginForm = props => {
       />
       <Ss type="submit">Login</Ss>
     </form>
+    </Main>
   );
 };
 

@@ -1,8 +1,44 @@
 body{
-  color:rgb(221, 182, 182);
+  color:#008000;
   background-color: rgb(41, 38, 38);
+  height:1000px;
+  font-family: 'Amatic SC', cursive;
+  font-weight: bold;
+  font-size:25px;
+}
+
+#root {
+  height:100%;
 }
 
 .App {
   text-align: center;
+  height:100%;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+form{
+  flex-direction: column;
+  display:flex;
+  width:300px;
+  margin-left: 300px;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.navlinks{
+  padding:10px;
+  padding-bottom: 3px;
+  text-decoration: none;
+  color:#008000;
+}
+
+h1{
+  padding-bottom: 15px;
+  font-size:45px;
 }
