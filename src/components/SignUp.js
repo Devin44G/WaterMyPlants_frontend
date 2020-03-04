@@ -26,7 +26,7 @@ const SignUp = props => {
       return (
         <Main>
         <form onSubmit={submitForm}>
-          <Ll htmlFor="user">Username</Ll>
+          <Ll htmlFor="user">Email</Ll>
           <Ii
             id="user"
             type="text"

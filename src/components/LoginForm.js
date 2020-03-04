@@ -39,7 +39,7 @@ const LoginForm = props => {
   return (
     <Main>
     <form onSubmit={submitForm}>
-      <Ll htmlFor="user">User</Ll>
+      <Ll htmlFor="user">Email</Ll>
       <Ii
         id="user"
         type="text"
