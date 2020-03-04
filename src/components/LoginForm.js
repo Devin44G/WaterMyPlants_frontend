@@ -38,8 +38,8 @@ const LoginForm = props => {
       .post('/api/auth/login', userCred)
       .then(res => {
         window.localStorage.setItem('token', res.data.token);
-        window.localStorage.setItem('userID', res.data.id)
         props.history.push('/dashboard');
+        window.localStorage.setItem('userID', res.data.id)
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
@@ -76,14 +76,6 @@ const LoginForm = props => {
         onChange={handleChanges}
         value={userCred.password}
       />
-      {/* <Ll htmlFor="phone">Phone</Ll>
-        <Ii
-        id="phone"
-        type="number"
-        name="phone_number"
-        onChange={handleChanges}
-        value={userCred.phone_number}
-      /> */}
       <Ss type="submit">Login</Ss>
     </form>
   );

@@ -83,6 +83,14 @@ const Dashboard = props => {
     });
   }
 
+  const deletePlant = (plantID) => {
+    axiosWithAuth()
+      .delete(`/api/plants/${plantID.id}`)
+      .then(res =>{
+        console.log("Deleted Plant")
+      });
+  }
+
 
 
   return(
@@ -90,7 +98,10 @@ const Dashboard = props => {
       <h2>Hello . . . I'm just a test page!</h2>
       <Link to="/login">Logout</Link>
       <h3>My Plants:</h3>
-      {plants.map(plant => <p key={plant.nickname}>{plant.nickname}</p>)}
+      {plants.map(plant => <p key={plant.nickname}>{plant.nickname} <span onClick={e => {
+        e.stopPropagation();
+        deletePlant(plant);
+      }}>X</span></p>)}
       <form onSubmit={addPlant}>
         <input
           type="text"

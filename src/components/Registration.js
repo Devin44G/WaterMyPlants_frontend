@@ -50,12 +50,6 @@ const Registration = props => {
       [e.target.name]: e.target.value
     });
   };
-  //
-  // const submitForm = e => {
-  //   e.preventDefault();
-  //   props.checkLogin(log);
-  //   setLog({ user: "", pass: "" });
-  // };
 
   return (
     <form onSubmit={regHandler}>
@@ -83,7 +77,7 @@ const Registration = props => {
         onChange={handleChanges}
         value={userCred.phone_number}
       />
-      <Ss type="submit">Login</Ss>
+      <Ss type="submit">Sign Up</Ss>
     </form>
   );
 };
