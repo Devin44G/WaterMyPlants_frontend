@@ -34,7 +34,7 @@ const Registration = props => {
     console.log('Context:', userCred);
 
   const regHandler = e => {
-    // e.preventDefault();
+    e.preventDefault();
     axiosWithAuth()
       .post('/api/auth/register', userCred)
       .then(res => {
