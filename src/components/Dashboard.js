@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import Plant from './Plant';
 
 const Dashboard = props => {
   const [user, setUser] = useState({
@@ -94,13 +95,13 @@ const Dashboard = props => {
 
   return(
     <>
-      <h2>Hello . . . I'm just a test page!</h2>
       <Link to="/login">Logout</Link>
-      <h3>My Plants:</h3>
-      {plants.map(plant => <p key={plant.nickname}>{plant.nickname} <span onClick={e => {
+      <h2>Your Plants:</h2>
+      {plants.map(plant => <Link to={`/plant/${plant.id}`}><Plant plant={plant}/></Link>)}
+      {/* {plants.map(plant => <p key={plant.nickname}>{plant.nickname} <span onClick={e => {
         e.stopPropagation();
         deletePlant(plant);
-      }}>X</span></p>)}
+      }}>X</span></p>)} */}
       <form onSubmit={addPlant}>
         <input
           type="text"

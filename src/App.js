@@ -8,6 +8,7 @@ import SignUp from './components/SignUp';
 import Registration from './components/Registration';
 import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './components/Dashboard';
+import Plant from './components/Plant';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
         <Navigation/>
         <Route path="/login" component={LoginForm} />
         <Route exact path="/" component={SignUp} />
+        <Route path="/plant/:id" component={Plant} />
         {/* <PrivateRoute exact path="/dashboard" />
             <PrivateRoute exact path="/plant/:id" />
             <PrivateRoute exact path="/add-plant" />
