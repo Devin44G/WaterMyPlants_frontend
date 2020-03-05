@@ -1,5 +1,4 @@
 import React from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const PlantCard = props => {
   const { nickname, species, frequency } = props.plant;

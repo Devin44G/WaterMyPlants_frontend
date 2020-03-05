@@ -5,10 +5,10 @@ import { UserProvider } from './UserContext';
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import SignUp from './components/SignUp';
-import Registration from './components/Registration';
 import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import Plant from './components/Plant';
+import Community from './components/Community';
 
 import './App.css';
 
@@ -22,10 +22,7 @@ function App() {
         <Route path="/login" component={LoginForm} />
         <Route exact path="/" component={SignUp} />
         <Route path="/plant/:id" component={Plant} />
-        {/* <PrivateRoute exact path="/dashboard" />
-            <PrivateRoute exact path="/plant/:id" />
-            <PrivateRoute exact path="/add-plant" />
-        <PrivateRoute exact path="/edit-plant/:id" /> */}
+        <Route path="/community" component={Community} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </div>
     </UserProvider>

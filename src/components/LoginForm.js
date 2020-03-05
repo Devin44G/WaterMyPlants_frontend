@@ -8,14 +8,23 @@ const LoginForm = props => {
   const [userCred, setUserCred] = useContext(UserContext);
   console.log('Context:', userCred);
 
+  const tokenCheck = () => {
+    if(window.localStorage.getItem('token') && window.localStorage.getItem('userID')) {
+      setTimeout(() => {
+        console.log('Pushed');
+        props.history.push('/dashboard');
+      }, 2000);
+    }
+  };
+
   const loginHandler = e => {
     e.preventDefault();
     axiosWithAuth()
       .post('/api/auth/login', userCred)
       .then(res => {
-        window.localStorage.setItem('token', res.data.token);
         window.localStorage.setItem('userID', res.data.id);
-        props.history.push('/dashboard');
+        window.localStorage.setItem('token', res.data.token);
+        tokenCheck();
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
