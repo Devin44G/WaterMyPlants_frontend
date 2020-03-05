@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import PlantCard from './PlantCard';
+import axios from "axios";
 import {PlantAreaIn,
         PlantAreaOut} from '../styles';
 
@@ -12,6 +13,7 @@ const Dashboard = props => {
     phone_number: ''
   });
   const [plants, setPlants] = useState([]);
+  const [sun, setSun] = useState([]);
   const [addedPlant, setAddedPlant] = useState({
     nickname: '',
     species: '',
@@ -55,6 +57,15 @@ const Dashboard = props => {
 
 // PLANT DETAILS
   useEffect(() => {
+    axios
+    .get(`https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400
+    `)
+    .then(response => {
+      var test = response.data.results.sunrise;
+      //var keyArray = test.map(function(item) { return item["name"]; });
+      setSun(test);
+    //  console.log("dave" + test);
+    },[]);
     axiosWithAuth()
       .get('/api/plants')
       .then(res2 => {
@@ -126,6 +137,7 @@ const Dashboard = props => {
 
       {/* DASHBOARD FORMS */}
       <section style={{display:'block', margin:'0 auto', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
+      <div>Sunrise {sun}</div>
         <form onSubmit={addPlant} id="add-plant" style={{margin:'0'}}>
           <input
             type="text"
