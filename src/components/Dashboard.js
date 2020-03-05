@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import PlantCard from './PlantCard';
 import axios from "axios";
+import { Motion, spring } from 'react-motion';
 import {PlantAreaIn,
         PlantAreaOut} from '../styles';
 
@@ -101,6 +102,15 @@ const Dashboard = props => {
     });
   }
 
+  const SunTime = () => {
+    return (
+      <Motion defaultStyle={{ left: -100 }} style={{ left: spring(10) }}>
+        {val => <h1 style={{ position: 'relative', ...val }}>Sunrise {sun}{' '}
+        </h1>}
+      </Motion>
+    );
+  };
+
   return(
     <div className="dashboard">
       {/* DASHBOARD LINKS */}
@@ -137,7 +147,7 @@ const Dashboard = props => {
 
       {/* DASHBOARD FORMS */}
       <section style={{display:'block', margin:'0 auto', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
-      <div>Sunrise {sun}</div>
+        <SunTime/>
         <form onSubmit={addPlant} id="add-plant" style={{margin:'0'}}>
           <input
             type="text"
