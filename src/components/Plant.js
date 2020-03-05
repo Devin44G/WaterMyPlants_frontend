@@ -69,44 +69,44 @@ const Plant = props => {
   return(
     // CARD
     <div>
-      <button onClick={deletePlant}>Delete</button>
+      <div style={{display:'flex', justifyContent:'flex-end', margin:'2rem 2rem'}}>
+        <button onClick={deletePlant} className="delete-btn">Delete Plant</button>
+      </div>
       <PlantCard plant={plant}/>
-
-      {isEditing && (
-        <form onSubmit={editPlant}>
-          <label>
-            New Nickname
-            <input
-              type="text"
-              placeholder="New Nickname"
-              name="nickname"
-              value={plant.nickname}
-              onChange={plantChangeHandler}
-            />
-          </label>
-          <label>
-            Species Name
-            <input
-              type="text"
-              placeholder="Species"
-              name="species"
-              value={plant.species}
-              onChange={plantChangeHandler}
-            />
-          </label>
-          <label>
-            Watering Frequency
-            <input
-              type="text"
-              placeholder="Watering Frequency"
-              name="frequency"
-              value={plant.frequency}
-              onChange={plantChangeHandler}
-            />
-          </label>
-          <button type="submit">Save Edit</button>
-        </form>
-      )}
+      <h2 style={{margin:'2rem 0 2rem'}}>Edit Plant</h2>
+      <form onSubmit={editPlant} style={{display:'block', margin:'0 auto', padding:'0', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
+        <label htmlFor="nickname">
+          New Nickname:
+        </label>
+        <input
+          type="text"
+          placeholder="New Nickname"
+          name="nickname"
+          value={plant.nickname}
+          onChange={plantChangeHandler}
+        />
+        <label htmlFor="species">
+          Species Name:
+        </label>
+        <input
+          type="text"
+          placeholder="Species"
+          name="species"
+          value={plant.species}
+          onChange={plantChangeHandler}
+        />
+        <label htmlFor="frequency">
+          Watering Frequency:
+        </label>
+        <input
+          type="text"
+          placeholder="Watering Frequency"
+          name="frequency"
+          value={plant.frequency}
+          onChange={plantChangeHandler}
+        />
+        <button type="submit">Save Edit</button>
+      </form>
     </div>
   );
 }

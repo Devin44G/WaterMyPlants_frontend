@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Ss, Ii, Ll, Main } from './../styles'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { UserContext } from '../UserContext';
@@ -6,25 +6,19 @@ import { UserContext } from '../UserContext';
 
 const LoginForm = props => {
   const [userCred, setUserCred] = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
   console.log('Context:', userCred);
-
-  const tokenCheck = () => {
-    if(window.localStorage.getItem('token') && window.localStorage.getItem('userID')) {
-      setTimeout(() => {
-        console.log('Pushed');
-        props.history.push('/dashboard');
-      }, 2000);
-    }
-  };
 
   const loginHandler = e => {
     e.preventDefault();
+    setIsLoading(true);
     axiosWithAuth()
       .post('/api/auth/login', userCred)
       .then(res => {
         window.localStorage.setItem('userID', res.data.id);
         window.localStorage.setItem('token', res.data.token);
-        tokenCheck();
+        props.history.push('/dashboard');
+        setIsLoading(false);
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
@@ -58,7 +52,7 @@ const LoginForm = props => {
         onChange={handleChanges}
         value={userCred.password}
       />
-      <Ss type="submit">Login</Ss>
+      <Ss type="submit">{!isLoading ? 'Login' : 'Loading . . .'}</Ss>
     </form>
     </Main>
   );

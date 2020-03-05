@@ -108,12 +108,14 @@ const Dashboard = props => {
       <PlantAreaOut>
         {plants.map(plant => (
           <PlantAreaIn key={plant.id}>
-            <span className="span-bg"></span>
+            {/* <span className="span-bg"></span> */}
             <Link to={`/plant/${plant.id}`}
               style={{
                 textDecoration:'none',
                 color:'black',
-                zIndex:'1'
+                zIndex:'1',
+                width:'100%',
+                height:'100%'
               }}>
               <PlantCard plant={plant} />
             </Link>
