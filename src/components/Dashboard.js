@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import Plant from './Plant';
+import PlantCard from './PlantCard';
 
 const Dashboard = props => {
   const [user, setUser] = useState({
@@ -72,7 +72,13 @@ const Dashboard = props => {
       })
       .then(res => {
         console.log('Plant added');
-        // props.history.push('/dashboard');
+        axiosWithAuth()
+        .get('/api/plants')
+        .then(res2 => {
+          setPlants(res2.data);
+          console.log('Data from plant: ', res2.data);
+        })
+        .catch(err => `Error of type: ${err} has been thrown`);
       })
   };
 
@@ -83,25 +89,11 @@ const Dashboard = props => {
     });
   }
 
-  const deletePlant = (plantID) => {
-    axiosWithAuth()
-      .delete(`/api/plants/${plantID.id}`)
-      .then(res =>{
-        console.log("Deleted Plant")
-      });
-  }
-
-
-
   return(
     <>
       <Link to="/login">Logout</Link>
       <h2>Your Plants:</h2>
-      {plants.map(plant => <Link to={`/plant/${plant.id}`}><Plant plant={plant}/></Link>)}
-      {/* {plants.map(plant => <p key={plant.nickname}>{plant.nickname} <span onClick={e => {
-        e.stopPropagation();
-        deletePlant(plant);
-      }}>X</span></p>)} */}
+      {plants.map(plant => <Link to={`/plant/${plant.id}`} key={plant.id}><PlantCard plant={plant}/></Link>)}
       <form onSubmit={addPlant}>
         <input
           type="text"
