@@ -2,25 +2,25 @@ import React from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const PlantCard = props => {
-  console.log('props: ', props);
   const { nickname, species, frequency } = props.plant;
 
   return(
-    <div style={{border:'solid 1px green'}}>
+    <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+      <div className="card-img"></div>
       {/* NICKNAME */}
       <div>
-        <h3>{nickname}</h3>
+        <h3>{nickname ? nickname : ('No Nickname Given')}</h3>
         <p>Nickname</p>
       </div>
       {/* SPECIES */}
       <div>
-        <h4>{species}</h4>
+        <h4>{species ? species : ('No Species Given')}</h4>
         <p>Species</p>
       </div>
       {/* FREQUENCY */}
       <div>
-        <h4>Water me: {frequency}</h4>
-        <p>Frequency</p>
+        <h4>Water me: {frequency ? frequency : ('No Frequency Given')}</h4>
+        <p>Watering Frequency</p>
       </div>
     </div>
   );

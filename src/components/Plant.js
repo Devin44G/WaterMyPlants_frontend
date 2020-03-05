@@ -24,7 +24,7 @@ const Plant = props => {
         setPlant({
           nickname: res.data.plant.nickname,
           species: res.data.plant.species,
-          frequency: res.data.frequency
+          frequency: res.data.plant.frequency
         });
       })
   }
@@ -47,7 +47,7 @@ const Plant = props => {
       .then(res => {
         console.log('This is put res:', res.data);
         props.history.push('/dashboard');
-      })
+      });
   }
 
   const plantChangeHandler = e => {
@@ -73,7 +73,7 @@ const Plant = props => {
       <PlantCard plant={plant}/>
 
       {isEditing && (
-        <form onClick={editPlant}>
+        <form onSubmit={editPlant}>
           <label>
             New Nickname
             <input

@@ -14,8 +14,8 @@ const LoginForm = props => {
       .post('/api/auth/login', userCred)
       .then(res => {
         window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('userID', res.data.id);
         props.history.push('/dashboard');
-        window.localStorage.setItem('userID', res.data.id)
         console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
@@ -33,7 +33,7 @@ const LoginForm = props => {
   return (
     <Main>
     <form onSubmit={loginHandler}>
-      <Ll htmlFor="user">Email</Ll>
+      <Ll htmlFor="user">Username</Ll>
       <Ii
         id="user"
         type="text"

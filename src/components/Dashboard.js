@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import PlantCard from './PlantCard';
+import {PlantAreaIn,
+        PlantAreaOut} from '../styles';
 
 const Dashboard = props => {
   const [user, setUser] = useState({
@@ -57,7 +59,6 @@ const Dashboard = props => {
       .get('/api/plants')
       .then(res2 => {
         setPlants(res2.data);
-        console.log('Data from plant: ', res2.data);
       })
       .catch(err => `Error of type: ${err} has been thrown`);
     }, [setPlants]);
@@ -90,21 +91,63 @@ const Dashboard = props => {
   }
 
   return(
-    <>
-      <Link to="/login">Logout</Link>
+    <div className="dashboard">
+      {/* DASHBOARD LINKS */}
+      <div style={{
+        width:'100%',
+        display:'flex',
+        justifyContent:'flex-end',
+        padding:'2rem 1rem'
+      }}>
+        <a href="#add-plant" style={{marginRight:'1rem'}}>Add Plant</a>
+        <a href="#edit-user">Edit User Info</a>
+      </div>
+
+      {/* USER'S PLANTS */}
       <h2>Your Plants:</h2>
-      {plants.map(plant => <Link to={`/plant/${plant.id}`} key={plant.id}><PlantCard plant={plant}/></Link>)}
-      <form onSubmit={addPlant}>
+      <PlantAreaOut>
+        {plants.map(plant => (
+          <PlantAreaIn key={plant.id}>
+            <span className="span-bg"></span>
+            <Link to={`/plant/${plant.id}`}
+              style={{
+                textDecoration:'none',
+                color:'black',
+                zIndex:'1'
+              }}>
+              <PlantCard plant={plant} />
+            </Link>
+          </PlantAreaIn>
+        )
+        )}
+      </PlantAreaOut>
+
+      {/* DASHBOARD FORMS */}
+      <form onSubmit={addPlant} id="add-plant">
         <input
           type="text"
-          placeholder="Nickname"
+          placeholder=" Plant Nickname"
           name="nickname"
           value={addedPlant.nickname}
           onChange={plantChangeHandler}
         />
+        <input
+          type="text"
+          placeholder="Species Name"
+          name="species"
+          value={addedPlant.species}
+          onChange={plantChangeHandler}
+        />
+        <input
+          type="text"
+          placeholder="Watering Frequency"
+          name="frequency"
+          value={addedPlant.frequency}
+          onChange={plantChangeHandler}
+        />
         <button type="submit">Add Plant</button>
       </form>
-      <form onSubmit={editUser}>
+      <form onSubmit={editUser} id="edit-user">
         <input
           type="text"
           placeholder="Username"
@@ -121,7 +164,7 @@ const Dashboard = props => {
         />
         <button type="submit">Edit Username</button>
       </form>
-    </>
+    </div>
   );
 }
 

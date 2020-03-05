@@ -61,9 +61,26 @@ justify-content:space-evenly;
 padding:20px;
 `;
 
-export const PlantCard = styled.div`
+export const PlantAreaIn = styled.div`
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: solid 1px #1A4704;
-  
+  border-radius: 3px;
+  padding: 1rem;
+  position: relative;
+  margin: 1rem;
+`;
+
+export const PlantAreaOut = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+export const PlantCard = styled.div`
 
 `;
 
