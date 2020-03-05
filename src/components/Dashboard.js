@@ -125,49 +125,51 @@ const Dashboard = props => {
       </PlantAreaOut>
 
       {/* DASHBOARD FORMS */}
-      <form onSubmit={addPlant} id="add-plant">
-        <input
-          type="text"
-          placeholder=" Plant Nickname"
-          name="nickname"
-          value={addedPlant.nickname}
-          onChange={plantChangeHandler}
-        />
-        <input
-          type="text"
-          placeholder="Species Name"
-          name="species"
-          value={addedPlant.species}
-          onChange={plantChangeHandler}
-        />
-        <input
-          type="text"
-          placeholder="Watering Frequency"
-          name="frequency"
-          value={addedPlant.frequency}
-          onChange={plantChangeHandler}
-        />
-        <button type="submit">Add Plant</button>
-      </form>
-      <form onSubmit={editUser} id="edit-user">
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={user.username}
-          onChange={changeHandler}
-        />
-        <input
-          type="text"
-          placeholder="New Number"
-          name="phone_number"
-          value={user.phone_number}
-          onChange={changeHandler}
-        />
-        <button type="submit">Edit Username</button>
-      </form>
+      <section style={{display:'block', margin:'0 auto', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
+        <form onSubmit={addPlant} id="add-plant" style={{margin:'0'}}>
+          <input
+            type="text"
+            placeholder=" Plant Nickname"
+            name="nickname"
+            value={addedPlant.nickname}
+            onChange={plantChangeHandler}
+          />
+          <input
+            type="text"
+            placeholder="Species Name"
+            name="species"
+            value={addedPlant.species}
+            onChange={plantChangeHandler}
+          />
+          <input
+            type="text"
+            placeholder="Watering Frequency"
+            name="frequency"
+            value={addedPlant.frequency}
+            onChange={plantChangeHandler}
+          />
+          <button type="submit">Add Plant</button>
+        </form>
+        <form onSubmit={editUser} id="edit-user" style={{margin:'0'}}>
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={user.username}
+            onChange={changeHandler}
+          />
+          <input
+            type="text"
+            placeholder="New Number"
+            name="phone_number"
+            value={user.phone_number}
+            onChange={changeHandler}
+          />
+          <button type="submit">Edit Username</button>
+        </form>
+      </section>
     </div>
   );
-}
+  }
 
-export default Dashboard;
+      export default Dashboard;

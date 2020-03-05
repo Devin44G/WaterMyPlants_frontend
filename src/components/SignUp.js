@@ -9,8 +9,8 @@ const SignUp = props => {
     userCred.phone_number = parseInt(userCred.phone_number);
     console.log('Context:', userCred);
 
-  const regHandler = e => {
-    e.preventDefault();
+  const regHandler = () => {
+    // e.preventDefault();
     axiosWithAuth()
       .post('/api/auth/register', userCred)
       .then(res => {
@@ -32,7 +32,7 @@ const SignUp = props => {
 
       return (
         <Main>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(regHandler)}>
             <Ll htmlFor="user">Username</Ll>
             <Ii
               id="user"
