@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import img from './../img/wmp-background.jpg';
-export const Nav = styled.div`
 
+export const Nav = styled.div`
   display: flex;
   flex-direction: row;
   background: white;
@@ -83,13 +83,3 @@ export const PlantAreaOut = styled.div`
 export const PlantCard = styled.div`
 
 `;
-
-// EXAMPLE
-/*
-export const MyStyle = styled.div`
-  // STYLES HERE
-`;
-
-IMPORT NON-DEFAULT EXPORT INTO OTHER FILES THIS WAY:
-  import { MyStyle } from './styles'; // BECAUSE THE FILE IS NAMED index, WE DON'T NEED TO INCLUDE THE FILE NAME IN THE PATH, BECAUSE THE index FILE WILL AUTOMATICALLY BE INCLUDED . . .
-*/
