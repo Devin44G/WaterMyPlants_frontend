@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from 'react-router-dom';
-import { UserProvider } from './UserContext';
+import { Provider } from './state/PLContext';
 
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
@@ -15,7 +15,7 @@ import './App.css';
 function App() {
 
   return (
-    <UserProvider>
+    <Provider>
       <div className="App">
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet"></link>
         <Route path="/" component={Navigation} />
@@ -25,7 +25,7 @@ function App() {
         <Route path="/community" component={Community} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </div>
-    </UserProvider>
+    </Provider>
   );
 }
 

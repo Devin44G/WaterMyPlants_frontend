@@ -10,15 +10,14 @@ import {PlantAreaIn,
 const Dashboard = props => {
   const [user, setUser] = useState({
     id:'',
-    username: '',
-    phone_number: ''
+    username: ''
   });
   const [plants, setPlants] = useState([]);
   const [sun, setSun] = useState([]);
   const [addedPlant, setAddedPlant] = useState({
     nickname: '',
     species: '',
-    frequency: ''
+    h2o_frequency: ''
   });
   const id = localStorage.getItem('userID');
 
@@ -30,8 +29,7 @@ const Dashboard = props => {
         console.log('Data from useEffect: ', res.data);
         setUser({
           id: res.data.id,
-          username: res.data.username,
-          phone_number: res.data.phone_number
+          username: res.data.username
         });
       })
       .catch(err => `Error of type: ${err} has been thrown`);
@@ -41,8 +39,7 @@ const Dashboard = props => {
     e.preventDefault();
     axiosWithAuth()
       .put(`/api/users/${id}`, {
-        username: user.username,
-        phone_number: user.phone_number
+        username: user.username
       })
       .then(() => {
         console.log('Edit successfull');
@@ -81,7 +78,7 @@ const Dashboard = props => {
       .post('/api/plants/', {
         nickname: addedPlant.nickname,
         species: addedPlant.species,
-        frequency: addedPlant.frequency
+        h2o_frequency: addedPlant.h2o_frequency
       })
       .then(res => {
         console.log('Plant added');
@@ -165,9 +162,9 @@ const Dashboard = props => {
           />
           <input
             type="text"
-            placeholder="Watering Frequency"
-            name="frequency"
-            value={addedPlant.frequency}
+            placeholder="Watering h2o_frequency"
+            name="h2o_frequency"
+            value={addedPlant.h2o_frequency}
             onChange={plantChangeHandler}
           />
           <button type="submit">Add Plant</button>
@@ -178,13 +175,6 @@ const Dashboard = props => {
             placeholder="Username"
             name="username"
             value={user.username}
-            onChange={changeHandler}
-          />
-          <input
-            type="text"
-            placeholder="New Number"
-            name="phone_number"
-            value={user.phone_number}
             onChange={changeHandler}
           />
           <button type="submit">Edit Username</button>

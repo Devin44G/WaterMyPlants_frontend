@@ -61,10 +61,10 @@ const Community = props => {
                 <h4>{plant.species ? plant.species : ('No Species Given')}</h4>
                 <p>Species</p>
               </div>
-              {/* FREQUENCY */}
+              {/* h2o_frequency */}
               <div>
-                <h4>Water me: {plant.frequency ? plant.frequency : ('No Frequency Given')}</h4>
-                <p>Watering Frequency</p>
+                <h4>Water me: {plant.h2o_frequency ? plant.h2o_frequency : ('No h2o_frequency Given')}</h4>
+                <p>Watering h2o_frequency</p>
               </div>
             </div>
           )

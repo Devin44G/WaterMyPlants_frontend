@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PlantCard = props => {
-  const { nickname, species, frequency } = props.plant;
+  const { nickname, species, h2o_frequency } = props.plant;
 
   return(
     <div style={{
@@ -38,10 +38,10 @@ const PlantCard = props => {
             <h4>{species ? species : ('No Species Given')}</h4>
             <p>Species</p>
           </div>
-          {/* FREQUENCY */}
+          {/* h2o_frequency */}
           <div>
-            <h4>Water me: {frequency ? frequency : ('No Frequency Given')}</h4>
-            <p>Watering Frequency</p>
+            <h4>Water me: {h2o_frequency ? h2o_frequency : ('No h2o_frequency Given')}</h4>
+            <p>Watering h2o_frequency</p>
           </div>
         </div>
       </div>

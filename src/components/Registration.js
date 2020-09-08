@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { UserContext } from '../UserContext';
+import { PLContext } from '../state/PLContext';
 
 
 const Ss = styled.button`
@@ -28,8 +28,7 @@ const Ll = styled.label`
   `;
 
 const Registration = props => {
-  const [userCred, setUserCred] = useContext(UserContext);
-    userCred.phone_number = parseInt(userCred.phone_number);
+  const [userCred, setUserCred] = useContext(PLContext);
     console.log('Context:', userCred);
 
   const regHandler = e => {
@@ -67,14 +66,6 @@ const Registration = props => {
         name="password"
         onChange={handleChanges}
         value={userCred.password}
-      />
-      <Ll htmlFor="phone">Phone</Ll>
-      <Ii
-        id="phone"
-        type="number"
-        name="phone_number"
-        onChange={handleChanges}
-        value={userCred.phone_number}
       />
       <Ss type="submit">Sign Up</Ss>
     </form>

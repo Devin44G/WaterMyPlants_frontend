@@ -10,7 +10,7 @@ const Plant = props => {
   const [plant, setPlant] = useState({
     nickname: '',
     species: '',
-    frequency: ''
+    h2o_frequency: ''
   });
 
   const match = useRouteMatch();
@@ -20,11 +20,11 @@ const Plant = props => {
     axiosWithAuth()
       .get(`/api/plants/${id}`)
       .then(res => {
-        console.log('Data!!', res.data.plant);
+        console.log('Data!!', res.data);
         setPlant({
-          nickname: res.data.plant.nickname,
-          species: res.data.plant.species,
-          frequency: res.data.plant.frequency
+          nickname: res.data.nickname,
+          species: res.data.species,
+          h2o_frequency: res.data.h2o_frequency
         });
       })
   }
@@ -42,7 +42,7 @@ const Plant = props => {
       .put(`/api/plants/${id}`, {
         nickname: plant.nickname,
         species: plant.species,
-        frequency: plant.frequency
+        h2o_frequency: plant.h2o_frequency
       })
       .then(res => {
         console.log('This is put res:', res.data);
@@ -95,14 +95,14 @@ const Plant = props => {
           value={plant.species}
           onChange={plantChangeHandler}
         />
-        <label htmlFor="frequency">
-          Watering Frequency:
+        <label htmlFor="h2o_frequency">
+          Watering h2o_frequency:
         </label>
         <input
           type="text"
-          placeholder="Watering Frequency"
-          name="frequency"
-          value={plant.frequency}
+          placeholder="Watering h2o_frequency"
+          name="h2o_frequency"
+          value={plant.h2o_frequency}
           onChange={plantChangeHandler}
         />
         <button type="submit">Save Edit</button>
