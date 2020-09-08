@@ -1,4 +1,7 @@
-// ACTION VARS
+// ACTION FUNCS
+import { getUser, addUser } from '../actions';
+
+// TYPE VARS
 export const GET_USER = 'GET_USER';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const ADD_USER = 'ADD_USER';
@@ -29,13 +32,9 @@ const initialState = {
 export const plReducer = (state = initialState, action) => {
   switch(action.type) {
     case GET_USER:
-      return {
-        ...state,
-        userData: {
-          ...state.userData,
-          username: action.payload,
-        }
-      };
+      return getUser(state, action);
+    case ADD_USER:
+      return addUser(state, action);
     default:
       return state;
   }

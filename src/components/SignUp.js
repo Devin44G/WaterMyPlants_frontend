@@ -1,63 +1,60 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Ss, Ii, Ll, Main } from './../styles'
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PLContext } from '../state/PLContext';
-import { GET_USER } from '../state/reducers/plReducer';
+import { GET_USER, ADD_USER } from '../state/reducers/plReducer';
 import { useForm } from 'react-hook-form'
 
 const SignUp = props => {
   const { data, dispatch } = useContext(PLContext);
-  useEffect(() => {
-    dispatch({ type: 'DEFAULT' });
-  }, []);
-  console.log('Context:', data);
 
-  const regHandler = () => {
-    // e.preventDefault();
-    // axiosWithAuth()
-    //   .post('/api/auth/register', userCred)
-    //   .then(res => {
-    //     props.history.push("/login");
-    //     console.log('Data after login: ', res);
-    //   })
-    //   .catch(err => console.log(err));
+  const regHandler = data => {
+    dispatch({ type: ADD_USER, payload: data });
+    console.log('Form', data);
+    props.history.push('/login')
   };
 
-  const handleChanges = e => {
-    // setUserCred({
-    //   ...userCred,
-    //   [e.target.name]: e.target.value
-    // });
-  };
-
-  const { register, handleSubmit, errors } = useForm()
-  const onSubmit = data  => { console.log(data) }
+  const { register, handleSubmit, watch, errors } = useForm()
+  const onSubmit = data => { console.log(data) }
 
       return (
         <Main>
-          Hello
-          <button onClick={() => {dispatch({ type: GET_USER, payload: 'John' })}}>click me</button>
           <form onSubmit={handleSubmit(regHandler)}>
-            <Ll htmlFor="user">Username</Ll>
+            <h2 style={{textAlign:'left'}}>Registration:</h2>
             <Ii
-              id="user"
               type="text"
               name="username"
-              onChange={handleChanges}
-              // value={userCred.userData.username}
+              placeholder="Create Username"
               ref={register({ required: true })}
             />
-            {errors.username && <span>Username field is required</span>}
-            {/* <Ll htmlFor="pass">Password</Ll>
-              <Ii
-              id="pass"
-              type="text"
+            {errors.username && <span>{errors.username.message}</span>}
+            <Ii
+              type="password"
               name="password"
-              onChange={handleChanges}
-              value={userCred.password}
-              ref={register({ required: true })}
-              />
-            {errors.password && <span>Password is required</span>} */}
+              placeholder="Create Password"
+              ref={register({
+                required: true,
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 6 characters'
+                }
+              })}
+            />
+            {errors.password && <span>{errors.password.message}</span>}
+            <Ii
+              type="password"
+              name="confirmPass"
+              placeholder="Confirm Password"
+              ref={register({
+                required: true,
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 6 characters'
+                },
+                validate: value =>
+                  value === watch('password') || "Passwords don't match"
+              })}
+            />
+            {errors.confirmPass && <span>{errors.confirmPass.message}</span>}
             <Ss type="submit">Sign Up</Ss>
           </form>
         </Main>
