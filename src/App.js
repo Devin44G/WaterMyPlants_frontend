@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/" component={SignUp} />
         <Route path="/plant/:id" component={Plant} />
         <Route path="/community" component={Community} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
       </div>
     </Provider>
   );
