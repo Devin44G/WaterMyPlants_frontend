@@ -14,18 +14,17 @@ const LoginForm = props => {
   const { handleSubmit, register } = useForm()
 
   const loginHandler = data => {
-    console.log(data);
-    // setIsLoading(true);
+    setIsLoading(true);
     axiosWithAuth()
       .post('/api/auth/login', data)
       .then( res => {
         window.localStorage.setItem('user', JSON.stringify(res.data));
         window.localStorage.setItem('token', res.data.token);
         props.history.push('/dashboard');
-        // setIsLoading(false);
-        console.log('Data after login: ', res.data);
       })
       .catch(err => console.log(err));
+
+      setIsLoading(false);
   };
 
   const useStyles = makeStyles((theme) => ({
