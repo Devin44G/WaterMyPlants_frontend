@@ -1,11 +1,11 @@
 import React, { useReducer, createContext } from 'react';
-import { plReducer } from './reducers/plReducer';
+import { plReducer, initialState } from './reducers/plReducer';
 
 
 export const PLContext = createContext();
 
 export const Provider = props => {
-  const [data, dispatch] = useReducer(plReducer);
+  const [data, dispatch] = useReducer(plReducer, initialState);
 
   return(
     <PLContext.Provider value={{ data, dispatch }}>

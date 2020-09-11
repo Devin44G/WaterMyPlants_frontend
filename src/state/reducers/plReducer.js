@@ -1,5 +1,5 @@
 // ACTION FUNCS
-import { getUser, addUser } from '../actions';
+import { getUser, addUser, getPlants } from '../actions';
 
 // TYPE VARS
 export const GET_USER = 'GET_USER';
@@ -7,13 +7,13 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const ADD_USER = 'ADD_USER';
 export const EDIT_USER = 'EDIT_USER';
 
-export const GET_PLANTS = 'GET_PLANT';
+export const GET_PLANTS = 'GET_PLANTS';
 export const GET_ALL_PLANTS = 'GET_ALL_PLANTS';
 export const GET_SINGLE_PLANT = 'GET_SINGLE_PLANT';
 export const ADD_PLANT = 'ADD_PLANT';
 export const EDIT_PLANT = 'EDIT_PLANT';
 
-const initialState = {
+export const initialState = {
   userData: {
     id: 0,
     username: '',
@@ -35,6 +35,8 @@ export const plReducer = (state = initialState, action) => {
       return getUser(state, action);
     case ADD_USER:
       return addUser(state, action);
+    case GET_PLANTS:
+      return getPlants(state, action);
     default:
       return state;
   }
