@@ -5,7 +5,6 @@ import { Provider } from './state/PLContext';
 import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import SignUp from './components/SignUp';
-import PrivateRoute from './routes/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import Plant from './components/Plant';
 import Community from './components/Community';
