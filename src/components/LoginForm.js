@@ -1,59 +1,61 @@
 import React, { useContext, useState } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Ss, Ii, Ll, Main } from './../styles'
+import axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PLContext } from '../state/PLContext';
+import { useForm } from 'react-hook-form'
 
 
 const LoginForm = props => {
-  const { dispatch } = useContext(PLContext);
+  // const { dispatch } = useContext(PLContext);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log('Context:', userCred);
+  const { handleSubmit, register } = useForm()
 
-  const loginHandler = e => {
-    e.preventDefault();
-    setIsLoading(true);
-    // axiosWithAuth()
-    //   .post('/api/auth/login', userCred)
-    //   .then(res => {
-    //     window.localStorage.setItem('userID', res.data.id);
-    //     window.localStorage.setItem('token', res.data.token);
-    //     props.history.push('/dashboard');
-    //     setIsLoading(false);
-    //     console.log('Data after login: ', res);
-    //   })
-    //   .catch(err => console.log(err));
+  const loginHandler = data => {
+    console.log(data);
+    // setIsLoading(true);
+    axiosWithAuth()
+      .post('/api/auth/login', data)
+      .then( res => {
+        window.localStorage.setItem('user', JSON.stringify(res.data));
+        window.localStorage.setItem('token', res.data.token);
+        props.history.push('/dashboard');
+        // setIsLoading(false);
+        console.log('Data after login: ', res.data);
+      })
+      .catch(err => console.log(err));
   };
 
-  const handleChanges = e => {
-    // setUserCred({
-    //   ...userCred,
-    //   [e.target.name]: e.target.value
-    // });
-  };
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+  }));
 
-
+  const classes = useStyles();
 
   return (
     <Main>
-    <form onSubmit={loginHandler}>
-      <Ll htmlFor="user">Username</Ll>
-      <Ii
-        id="user"
-        type="text"
-        name="username"
-        onChange={handleChanges}
-        // value={userCred.username}
-      />
-      <Ll htmlFor="pass">Password</Ll>
-      <Ii
-        id="pass"
-        type="password"
-        name="password"
-        onChange={handleChanges}
-        // value={userCred.password}
-      />
-      <Ss type="submit">{!isLoading ? 'Login' : 'Loading . . .'}</Ss>
-    </form>
+      <form onSubmit={handleSubmit(loginHandler)}>
+        <h2 style={{textAlign:'left'}}>Login:</h2>
+        <Ii
+          type="text"
+          name="username"
+          placeholder="Username"
+          ref={register({ required: true })}
+        />
+        <Ii
+          type="password"
+          name="password"
+          placeholder="Password"
+          ref={register({ required: true })}
+        />
+        <Ss type="submit" className={classes.root}>{!isLoading ? 'Login' : <CircularProgress style={{'color':'green'}} />}</Ss>
+      </form>
     </Main>
   );
 };
