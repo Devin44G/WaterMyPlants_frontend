@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom'
 import { Nav, LinkDiv } from './../styles'
 
+import { PLContext } from '../state/PLContext';
+import { CLEAN } from '../state/reducers/plReducer';
+
 
 const Navigation = props => {
+  const { dispatch } = useContext(PLContext);
+  
   const deleteToken = () => {
+    dispatch({ type: CLEAN });
     window.localStorage.removeItem('user')
     window.localStorage.removeItem('token');
     props.history.push('/');

@@ -1,6 +1,25 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-// ACTIONS
+// CLEAN STATE AFTER LOGOUT
+export const cleanState = () => {
+  return {
+    userData: {
+      id: 0,
+      username: '',
+    },
+    plantData: {
+      nickname: '',
+      species: '',
+      h2o_frequency: '',
+      image: ''
+    },
+    users: [],
+    plants: [],
+    loading: false
+  };
+}
+
+// USER ACTIONS
 export const getUser = (state, action) => {
   axiosWithAuth()
     .get(`/api/users/${action.payload.id}`)
@@ -30,6 +49,7 @@ export const addUser = (state, action) => {
     .catch(err => console.log(err));
 };
 
+// PLANT ACTIONS
 export const getPlants = (state, action) => {
   return {
     ...state,

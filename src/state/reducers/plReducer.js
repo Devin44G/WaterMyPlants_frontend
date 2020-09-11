@@ -1,5 +1,5 @@
 // ACTION FUNCS
-import { getUser, addUser, getPlants } from '../actions';
+import { cleanState, getUser, addUser, getPlants } from '../actions';
 
 // TYPE VARS
 export const GET_USER = 'GET_USER';
@@ -12,6 +12,8 @@ export const GET_ALL_PLANTS = 'GET_ALL_PLANTS';
 export const GET_SINGLE_PLANT = 'GET_SINGLE_PLANT';
 export const ADD_PLANT = 'ADD_PLANT';
 export const EDIT_PLANT = 'EDIT_PLANT';
+
+export const CLEAN = 'CLEAN';
 
 export const initialState = {
   userData: {
@@ -37,6 +39,8 @@ export const plReducer = (state = initialState, action) => {
       return addUser(state, action);
     case GET_PLANTS:
       return getPlants(state, action);
+    case CLEAN:
+      return cleanState();
     default:
       return state;
   }
