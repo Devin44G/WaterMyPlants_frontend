@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Ss, Ii, Ll, Main } from './../styles'
 import { PLContext } from '../state/PLContext';
-import { GET_USER, ADD_USER } from '../state/reducers/plReducer';
+import { ADD_USER } from '../state/reducers/plReducer';
 import { useForm } from 'react-hook-form'
 
 const SignUp = props => {
