@@ -3,15 +3,17 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 // ACTIONS
 export const getUser = (state, action) => {
   axiosWithAuth()
-    .post('/api/auth/register', action)
+    .get(`/api/users/${action.payload.id}`)
     .then(res => {
+      console.log('Successully got user: ', res.data);
     })
-    .catch(err => console.log(err));
+    .catch(err => `Error of type: ${err} has been thrown`);
   return {
     ...state,
     userData: {
       ...state.userData,
-      username: action.payload.username
+      id: action.payload.id,
+      username: action.payload.welcome
     }
   };
 };
@@ -23,14 +25,14 @@ export const addUser = (state, action) => {
       password: action.payload.password
     })
     .then(res => {
-      console.log('RES', res.data);
-      // return {
-      //   ...state,
-      //   userData: {
-      //     id: res.data.id,
-      //     username: res.data.username
-      //   }
-      // };
+      console.log('Successfully created user: ', res.data);
     })
     .catch(err => console.log(err));
 };
+
+export const getPlants = (state, action) => {
+  return {
+    ...state,
+    plants: action.payload
+  }
+}
