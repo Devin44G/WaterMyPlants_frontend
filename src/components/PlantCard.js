@@ -1,7 +1,17 @@
 import React from 'react';
 
-const PlantCard = props => {
-  const { nickname, species, h2o_frequency } = props.plant;
+const PlantCard = ({ plant }) => {
+  const { nickname, species, h2o_frequency, image } = plant;
+
+  const card_img2 = {
+    background: `url('http://localhost:5000/${image}') no-repeat center center`,
+    backgroundSize: 'cover',
+    width: '50px',
+    height: '50px',
+    border: 'solid 1px black',
+    marginBottom: '5px'
+  };
+  console.log(`http://localhost:5000/${image}`);
 
   return(
     <div style={{
@@ -27,7 +37,9 @@ const PlantCard = props => {
           alignItems:'center',
           padding:'1rem'
         }}>
-          <div className="card-img"></div>
+          <div className={(image === "No Image") ? 'card-img' : ''}
+            style={(image !== "No Image") ? card_img2 : null}
+          ></div>
           {/* NICKNAME */}
           <div>
             <h3>{nickname ? nickname : ('No Nickname Given')}</h3>
