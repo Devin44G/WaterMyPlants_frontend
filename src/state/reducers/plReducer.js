@@ -1,5 +1,5 @@
 // ACTION FUNCS
-import { cleanState, getUser, addUser, getPlants } from '../actions';
+import { cleanState, getUser, addUser, editUser, getPlants } from '../actions';
 
 // TYPE VARS
 export const GET_USER = 'GET_USER';
@@ -37,6 +37,8 @@ export const plReducer = (state = initialState, action) => {
       return getUser(state, action);
     case ADD_USER:
       return addUser(state, action);
+    case EDIT_USER:
+      return editUser(state, action);
     case GET_PLANTS:
       return getPlants(state, action);
     case CLEAN:

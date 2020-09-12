@@ -49,10 +49,29 @@ export const addUser = (state, action) => {
     .catch(err => console.log(err));
 };
 
+export const editUser = (state, action) => {
+  axiosWithAuth()
+    .patch(`/api/users/${action.payload.user.id}`, {
+      username: action.payload.data.username
+    })
+    .then(() => {
+      console.log('Edit successful');
+    });
+    console.log('USER', action.payload.user);
+    console.log('DATA', action.payload.data);
+    return {
+      ...state,
+      userData: {
+        ...state.userData,
+        username: action.payload.data.username
+      }
+    };
+};
+
 // PLANT ACTIONS
 export const getPlants = (state, action) => {
   return {
     ...state,
     plants: action.payload
-  }
-}
+  };
+};

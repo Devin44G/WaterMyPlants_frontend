@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PLContext } from '../state/PLContext';
-import { GET_USER, GET_PLANTS } from '../state/reducers/plReducer';
+import { GET_USER, GET_PLANTS, EDIT_USER } from '../state/reducers/plReducer';
 import DashboardContent from './DashboardContent';
 import axios from "axios";
 import { Motion, spring } from 'react-motion';
@@ -32,16 +32,12 @@ const Dashboard = props => {
     }
   }, []);
 
-  // const editUser = e => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //     .put(`/api/users/${id}`, {
-  //       username: user.username
-  //     })
-  //     .then(() => {
-  //       console.log('Edit successfull');
-  //     });
-  // }
+  const editUser = data => {
+    dispatch({ type: EDIT_USER, payload: {
+      user,
+      data
+    }});
+  }
   //
   // const changeHandler = e => {
   //   setUser({
@@ -109,7 +105,7 @@ const Dashboard = props => {
   return(
     <div className="dashboard">
       {!token ? 'You should log in' :
-      <DashboardContent data={data} />
+      <DashboardContent data={data} editUser={editUser} />
       }
     </div>
   );
