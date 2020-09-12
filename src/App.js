@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard';
 import Plant from './components/Plant';
 import Community from './components/Community';
 
-import './App.css';
+import './index.css';
 
 function App() {
 
