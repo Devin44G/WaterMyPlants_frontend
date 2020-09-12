@@ -23,8 +23,6 @@ const LoginForm = props => {
         props.history.push('/dashboard');
       })
       .catch(err => console.log(err));
-
-      setIsLoading(false);
   };
 
   const useStyles = makeStyles((theme) => ({
