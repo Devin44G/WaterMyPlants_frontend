@@ -75,3 +75,56 @@ export const getPlants = (state, action) => {
     plants: action.payload
   };
 };
+
+export const getSinglePlant = (state, action) => {
+  console.log('Successfully got plant with id: ', action.payload.id);
+  window.localStorage.setItem('plant', JSON.stringify(action.payload))
+  return {
+    ...state,
+    plantData: {
+      ...state.plantData,
+      id: action.payload.id,
+      nickname: action.payload.nickname,
+      species: action.payload.species,
+      h2o_frequency: action.payload.h2o_frequency,
+      image: action.payload.image
+    }
+  }
+};
+
+export const editPlant = (state, action) => {
+  axiosWithAuth()
+    .patch(`/api/plants/${action.payload.id}`, action.payload.data)
+    .then(res => {
+      console.log('Successfully edited plant. PLANT:', res.data);
+    });
+
+    return {
+      ...state,
+      userData: {
+        ...state.userData,
+        nickname: action.payload.data.nickname,
+        species: action.payload.data.species,
+        h2o_frequency: action.payload.data.h2o_frequency
+      }
+    }
+}
+
+export const deletePlant = (state, action) => {
+  axiosWithAuth()
+    .delete(`/api/plants/${action.payload}`)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(`Error deleting plant. ERROR: ${err}`);
+    })
+
+  return {
+    ...state
+  }
+}
+
+export const addPlant = (state, action) => {
+  // Figure out way to put action here
+}

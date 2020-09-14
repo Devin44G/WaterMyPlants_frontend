@@ -1,69 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useForm } from 'react-hook-form'
+import { PLContext } from '../state/PLContext';
+import { GET_SINGLE_PLANT, EDIT_PLANT, DELETE_PLANT } from '../state/reducers/plReducer';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useRouteMatch, useParams } from 'react-router-dom';
 
 import PlantCard from './PlantCard';
 
 const Plant = props => {
-  const [isEditing, setIsEditing] = useState(true);
-  const [plant, setPlant] = useState({
-    nickname: '',
-    species: '',
-    h2o_frequency: ''
-  });
+  const { handleSubmit, register } = useForm();
+  const { data, dispatch } = useContext(PLContext);
+  const [plant, setPlant] = useState(JSON.parse(window.localStorage.getItem('plant')));
 
+// GETTING PARAMS
   const match = useRouteMatch();
   const { id } = useParams();
-
-  const getData = id => {
-    axiosWithAuth()
-      .get(`/api/plants/${id}`)
-      .then(res => {
-        console.log('Data!!', res.data);
-        setPlant({
-          nickname: res.data.nickname,
-          species: res.data.species,
-          h2o_frequency: res.data.h2o_frequency
+// FETCHING CLICKED PLANT
+  useEffect(() => {
+    const getData = id => {
+      axiosWithAuth()
+        .get(`/api/plants/${id}`)
+        .then(res => {
+          dispatch({ type: GET_SINGLE_PLANT, payload: res.data });
+        })
+        .catch(err => {
+          console.log('Error getting plant. ERROR: ', err);
         });
-      })
+    }
+    getData(match.params.id);
+  }, []);
+
+  // EDITING PLANT
+  const editPlant = async data => {
+    await dispatch({ type: EDIT_PLANT, payload: {
+      data,
+      id
+    }
+  });
+    props.history.push('/dashboard');
   }
 
-  useEffect(() => {
-    getData(match.params.id);
-  }, [match.params.id]);
-
-  console.log('Plants Comp: ', match);
-
-  // EDITING PLANT DETAILS
-  const editPlant = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .put(`/api/plants/${id}`, {
-        nickname: plant.nickname,
-        species: plant.species,
-        h2o_frequency: plant.h2o_frequency
-      })
-      .then(res => {
-        console.log('This is put res:', res.data);
-        props.history.push('/dashboard');
-      });
+  // DELETING PLANT
+  const deletePlant = () => {
+    dispatch({ type: DELETE_PLANT, payload: data.plantData.id });
+      props.history.push('/dashboard');
   }
 
   const plantChangeHandler = e => {
     setPlant({
       ...plant,
       [e.target.name]: e.target.value
-    });
-  }
-
-  const deletePlant = () => {
-    axiosWithAuth()
-      .delete(`/api/plants/${id}`)
-      .then(res => {
-        console.log("Deleted Plant");
-        props.history.push('/dashboard');
-      });
+    })
   }
 
   return(
@@ -72,9 +60,9 @@ const Plant = props => {
       <div style={{display:'flex', justifyContent:'flex-end', margin:'2rem 2rem'}}>
         <button onClick={deletePlant} className="delete-btn">Delete Plant</button>
       </div>
-      <PlantCard plant={plant}/>
-      <h2 style={{margin:'2rem 0 2rem'}}>Edit Plant</h2>
-      <form onSubmit={editPlant} style={{display:'block', margin:'0 auto', padding:'0', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
+      <PlantCard plant={data.plantData}/>
+      <h2 style={{margin:'2rem 0 2rem'}}>Editing {data.plantData.nickname}</h2>
+      <form onSubmit={handleSubmit(editPlant)} style={{display:'block', margin:'0 auto', padding:'0', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
         <label htmlFor="nickname">
           New Nickname:
         </label>
@@ -84,6 +72,7 @@ const Plant = props => {
           name="nickname"
           value={plant.nickname}
           onChange={plantChangeHandler}
+          ref={register({ required: false })}
         />
         <label htmlFor="species">
           Species Name:
@@ -92,8 +81,9 @@ const Plant = props => {
           type="text"
           placeholder="Species"
           name="species"
-          value={plant.species}
+          value={`${plant.species}`}
           onChange={plantChangeHandler}
+          ref={register({ required: false })}
         />
         <label htmlFor="h2o_frequency">
           Watering h2o_frequency:
@@ -104,6 +94,7 @@ const Plant = props => {
           name="h2o_frequency"
           value={plant.h2o_frequency}
           onChange={plantChangeHandler}
+          ref={register({ required: false })}
         />
         <button type="submit">Save Edit</button>
       </form>

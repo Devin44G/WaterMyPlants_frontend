@@ -11,7 +11,6 @@ const PlantCard = ({ plant }) => {
     border: 'solid 1px black',
     marginBottom: '5px'
   };
-  console.log(`http://localhost:5000/${image}`);
 
   return(
     <div style={{
