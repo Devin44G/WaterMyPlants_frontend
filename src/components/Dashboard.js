@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { PLContext } from '../state/PLContext';
-import { GET_USER, GET_PLANTS, EDIT_USER } from '../state/reducers/plReducer';
+import { GET_USER, GET_PLANTS, EDIT_USER, ADD_PLANT } from '../state/reducers/plReducer';
 import DashboardContent from './DashboardContent';
 import axios from "axios";
 import { Motion, spring } from 'react-motion';
@@ -31,14 +31,47 @@ const Dashboard = props => {
         .catch(err => `Error getting plants. Error: ${err}`);
     }
   }, []);
-
+  // EDITING USER
   const editUser = data => {
     dispatch({ type: EDIT_USER, payload: {
       user,
       data
     }});
   }
-  //
+
+  // ADDING PLANT
+  const addPlant = data => {
+    let formData = new FormData();
+    formData.append('nickname', data.nickname);
+    formData.append('species', data.species);
+    formData.append('h2o_frequency', data.h2o_frequency);
+    formData.append('image', data.image);
+    axiosWithAuth()
+      .post('/api/plants/', formData)
+      .then(res => {
+        console.log(res.data);
+      })
+      .then(res => {
+        axiosWithAuth()
+          .get('/api/plants/mine')
+          .then( res => {
+            dispatch({ type: GET_PLANTS, payload: res.data });
+          })
+          .catch(err => `Error getting plants. Error: ${err}`);
+      })
+      .catch(err => console.log(`Error adding plant. ERROR: ${err}`));
+
+
+    // axiosWithAuth()
+    //   .get('/api/plants/mine')
+    //   .then( res => {
+    //     console.log(res.data);
+    //     // dispatch({ type: GET_PLANTS, payload: res.data });
+    //   })
+    //   .catch(err => `Error getting plants. Error: ${err}`);
+    // console.log(image);
+  };
+
   // const changeHandler = e => {
   //   setUser({
   //       ...user,
@@ -65,25 +98,7 @@ const Dashboard = props => {
   //     .catch(err => `Error of type: ${err} has been thrown`);
   //   }, [setPlants]);
 
-  // const addPlant = e => {
-  //   e.preventDefault();
-  //   axiosWithAuth()
-  //     .post('/api/plants/', {
-  //       nickname: addedPlant.nickname,
-  //       species: addedPlant.species,
-  //       h2o_frequency: addedPlant.h2o_frequency
-  //     })
-  //     .then(res => {
-  //       console.log('Plant added');
-  //       axiosWithAuth()
-  //       .get('/api/plants')
-  //       .then(res2 => {
-  //         setPlants(res2.data);
-  //         console.log('Data from plant: ', res2.data);
-  //       })
-  //       .catch(err => `Error of type: ${err} has been thrown`);
-  //     })
-  // };
+
   //
   // const plantChangeHandler = e => {
   //   setAddedPlant({
@@ -105,7 +120,7 @@ const Dashboard = props => {
   return(
     <div className="dashboard">
       {!token ? 'You should log in' :
-      <DashboardContent data={data} editUser={editUser} />
+      <DashboardContent data={data} editUser={editUser} addPlant={addPlant} />
       }
     </div>
   );

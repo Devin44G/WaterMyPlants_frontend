@@ -7,7 +7,7 @@ import PlantCard from './PlantCard';
 import {PlantAreaIn, PlantAreaOut} from '../styles';
 
 
-const DashboardContent = ({ data, editUser }) => {
+const DashboardContent = ({ data, editUser, addPlant }) => {
   const { handleSubmit, register } = useForm();
 
   // STYLE MODAL
@@ -25,11 +25,14 @@ const DashboardContent = ({ data, editUser }) => {
 
   // TO SHOW OR HIDE MODAL
   const [show, setShow] = useState(false);
+  const [showPF, setShowPF] = useState(false);
   const cancelModal = () => {
     setShow(!show);
   };
+  const cancelPFModal = () => {
+    setShowPF(!showPF);
+  };
 
-  console.log('PLANTS ', data);
   return(
     <section>
       <div style={{
@@ -38,13 +41,12 @@ const DashboardContent = ({ data, editUser }) => {
         justifyContent:'flex-end',
         padding:'2rem 1rem'
       }}>
-        <p>Welcome {data.userData.username}</p>
-        <a href="#add-plant" style={{marginRight:'1rem'}}>Add Plant</a>
+        <a style={{marginRight:'1rem', cursor:'pointer'}} onClick={() => setShowPF(true)}>Add Plant</a>
         <a style={{cursor:'pointer'}} onClick={() => setShow(true)}>Edit Username</a>
       </div>
 
       {/* USER'S PLANTS */}
-      <h2>Your Plants:</h2>
+      <h2>Welcome {data.userData.username}:</h2>
       <PlantAreaOut>
         {data.plants.map(plant => (
           <PlantAreaIn key={plant.id}>
@@ -66,24 +68,33 @@ const DashboardContent = ({ data, editUser }) => {
       {/* DASHBOARD FORMS */}
       <section style={{display:'block', margin:'0 auto', display:'flex', flexWrap:'wrap', flexDirection:'column', alignItems:'center'}}>
         {/* <SunTime/> */}
-        <form onSubmit={handleSubmit()} id="add-plant" style={{margin:'0'}}>
-          <input
-            type="text"
-            placeholder=" Plant Nickname"
-            name="nickname"
-          />
-          <input
-            type="text"
-            placeholder="Species Name"
-            name="species"
-          />
-          <input
-            type="text"
-            placeholder="Watering h2o_frequency"
-            name="h2o_frequency"
-          />
-          <button type="submit">Add Plant</button>
-        </form>
+        <Modal open={showPF} onClose={cancelPFModal}>
+          <div style={{top:'50%', left:'50%', transform:'translate(-50%, -50%)', display:'flex', flexDirection:'column', alignItems:'center'}} className={classes.paper}>
+            <h2>Adding Plant:</h2>
+            <form onSubmit={handleSubmit(addPlant)} id="add-plant" style={{margin:'0'}} encType="multipart/form-data">
+              <input
+                type="text"
+                placeholder=" Plant Nickname"
+                name="nickname"
+                ref={register({ required: true })}
+              />
+              <input
+                type="text"
+                placeholder="Species Name"
+                name="species"
+                ref={register({ required: false })}
+              />
+              <input
+                type="text"
+                placeholder="Watering h2o_frequency"
+                name="h2o_frequency"
+                ref={register({ required: true })}
+              />
+              <input type="file" name="image" ref={register({ required: false })} />
+              <button type="submit">Add Plant</button>
+            </form>
+          </div>
+        </Modal>
         <Modal open={show} onClose={cancelModal}>
           <div style={{top:'50%', left:'50%', transform:'translate(-50%, -50%)', display:'flex', flexDirection:'column', alignItems:'center'}} className={classes.paper}>
             <h2>Edit Your Username:</h2>
