@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Poiret One';
@@ -11,6 +11,13 @@
   font-weight: 400;
   font-display: swap;
   src: local('Poiret One'), local('PoiretOne-Regular'), url(https://fonts.gstatic.com/s/poiretone/v9/UqyVK80NJXN4zfRgbdfbo55cUg.ttf) format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  scroll-behavior: smooth;
 }
 html {
   font-size: 62.5%;
@@ -45,6 +52,23 @@ h3,
 h4 {
   text-decoration: underline;
 }
+body {
+  height: 100%;
+}
+.App {
+  text-align: center;
+  height: 100vh;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-bottom: solid 0.5px rgba(116, 116, 116, 0.7);
+  color: black;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 .dashboard {
   background: url('img/wood-bg.jpg') no-repeat center center fixed;
   background-size: cover;
@@ -61,19 +85,6 @@ button:hover {
 }
 .delete-btn:hover {
   background-color: #e00a0a;
-}
-#root {
-  height: 100%;
-}
-.App {
-  text-align: center;
-  height: 100%;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 form {
   flex-direction: column;

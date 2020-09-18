@@ -6,10 +6,10 @@ export const Nav = styled.div`
   flex-direction: row;
   background: white;
   color: black;
-  border: bottom 4px black;
   width:100%;
   justify-content:space-between;
   align-items:flex-end;
+  box-shadow: 0 -20px 3px 3px red;
 `;
 
 export const Ss = styled.button`
@@ -17,11 +17,12 @@ export const Ss = styled.button`
   background: #1A4704;
   color: black;
   border: 0;
-  margin: 20px 10px;
+  border-radius: .5rem;
+  margin: 20px 0;
   padding:10px;
   height:50px;
   color:white;
-  width:190px;
+  width:100%;
   font-family: 'Amatic SC', cursive;
   font-size:25px;
 
@@ -32,9 +33,9 @@ export const Ss = styled.button`
 `;
 
 export const Ii = styled.input`
-  width: 200px;
+  width: 100%;
   padding: 15px 22px;
-  margin: 10px 5px;
+  margin: 10px 0;
   box-sizing: border-box;
   border-radius: 4px;
   background-color:#ACFE9F;
@@ -50,9 +51,8 @@ export const Ll = styled.label`
 
 export const Main = styled.div`
     background:url(${img}) no-repeat center center fixed;
-    height:100%;
+    height:100vh;
     background-size:cover;
-
 `;
 
 export const LinkDiv = styled.div`

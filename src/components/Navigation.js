@@ -17,7 +17,7 @@ const Navigation = props => {
   }
 
   return (
-  <Nav>
+  <nav className="nav">
     <LinkDiv style={{alignItems:'baseline'}}>
       <a href="https://build-week-water-my-plants-4.github.io/UI/" rel="noopener noreferrer" target="_blank" style={{marginRight:'1rem'}}>Home</a>
       {window.localStorage.getItem('token') ? (
@@ -33,7 +33,7 @@ const Navigation = props => {
       <h1>Water My Plants</h1>
       <div className="logo"> {/* Image Here */} </div>
     </div>
-  </Nav>
+  </nav>
   );
 }
 
