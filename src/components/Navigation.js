@@ -19,7 +19,7 @@ const Navigation = props => {
   return (
   <nav className="nav">
     <LinkDiv style={{alignItems:'baseline'}}>
-      <a href="https://build-week-water-my-plants-4.github.io/UI/" rel="noopener noreferrer" target="_blank" style={{marginRight:'1rem'}}>Home</a>
+      <Link className="navlinks" to="/dashboard">Dashboard</Link>
       {window.localStorage.getItem('token') ? (
         <Link className="navlinks" to="/login" onClick={deleteToken}>Log Out</Link>
       ) : (
