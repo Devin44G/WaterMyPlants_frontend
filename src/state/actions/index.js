@@ -57,8 +57,6 @@ export const editUser = (state, action) => {
     .then(() => {
       console.log('Edit successful');
     });
-    console.log('USER', action.payload.user);
-    console.log('DATA', action.payload.data);
     return {
       ...state,
       userData: {

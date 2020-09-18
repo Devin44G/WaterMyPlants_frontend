@@ -46,7 +46,7 @@ const DashboardContent = ({ data, editUser, addPlant }) => {
       </div>
 
       {/* USER'S PLANTS */}
-      <h2>Welcome {data.userData.username}:</h2>
+      <h2>Welcome!</h2>
       <PlantAreaOut>
         {data.plants.map(plant => (
           <PlantAreaIn key={plant.id}>
