@@ -7,7 +7,6 @@ import LoginForm from "./components/LoginForm";
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import Plant from './components/Plant';
-import Community from './components/Community';
 
 import './index.css';
 
@@ -21,7 +20,6 @@ function App() {
         <Route path="/login" component={LoginForm} />
         <Route exact path="/" component={SignUp} />
         <Route path="/plant/:id" component={Plant} />
-        <Route path="/community" component={Community} />
         <Route path="/dashboard" component={Dashboard} />
       </div>
     </Provider>
