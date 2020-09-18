@@ -30,7 +30,7 @@ const Navigation = props => {
       )}
     </LinkDiv>
     <div style={{display:"flex",alignItems:"flex-start"}}>
-      <h1>Water My Plants</h1>
+      <h1>PlantLyfe</h1>
       <div className="logo"> {/* Image Here */} </div>
     </div>
   </nav>
