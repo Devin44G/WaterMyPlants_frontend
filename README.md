@@ -15,6 +15,7 @@
 
 &copy; Devin Graham
 
-#### Known Bugs, etc.:
+#### Known Bugs, Issues, etc.:
 - Upon initial registration, user will get an error that plants are undefined. This is a to-be-fixed state issue
+- Backend of app is deployed to Heroku using SQLite, so database info will not persist (simple change, but just hasn't happened yet)
 - You'll find that many of the styles are inline. This is only to quickly build out a useable UI. Will be broken out into separate LESS files
