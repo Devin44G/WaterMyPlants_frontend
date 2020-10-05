@@ -15,5 +15,6 @@
 
 &copy; Devin Graham
 
-#### Known Bugs:
+#### Known Bugs, etc.:
 - Upon initial registration, user will get an error that plants are undefined. This is a to-be-fixed state issue
+- You'll find that many of the styles are inline. This is only to quickly build out a useable UI. Will be broken out into separate LESS files
