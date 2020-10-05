@@ -6,7 +6,9 @@
 #### Version 1.1.0
 
 ## About the Application:
-* *Water My Plants* is a plant manager, which allows users to register an account, login and view their *dashboard*, from which they can manage their plants (create, edit, or delete)
+#### *PlantLyfe* is a plant management web application, wherein users can:
+- Create a personal account
+- View and manage their plants from their **dashboard** (create, edit, or delete)
 
 ## License and Copyright
 [License Agreement](LICENSE)

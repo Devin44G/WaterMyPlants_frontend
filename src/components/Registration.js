@@ -29,7 +29,6 @@ const Ll = styled.label`
 
 const Registration = props => {
   const [userCred, setUserCred] = useContext(PLContext);
-    console.log('Context:', userCred);
 
   const regHandler = e => {
     e.preventDefault();
@@ -37,7 +36,6 @@ const Registration = props => {
       .post('/api/auth/register', userCred)
       .then(res => {
         props.history.push("/login");
-        console.log('Data after login: ', res);
       })
       .catch(err => console.log(err));
   };
