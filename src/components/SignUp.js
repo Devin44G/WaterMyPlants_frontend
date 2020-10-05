@@ -9,7 +9,6 @@ const SignUp = props => {
 
   const regHandler = data => {
     dispatch({ type: ADD_USER, payload: data });
-    console.log('Form', data);
     props.history.push('/login')
   };
 
