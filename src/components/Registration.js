@@ -1,3 +1,5 @@
+// !! NOTE: COMPONENT NO LONGER IN USE, REFER TO SIGNUP COMP !!
+
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from '../utils/axiosWithAuth';

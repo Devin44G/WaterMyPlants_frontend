@@ -1,5 +1,10 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
+// Setting up "actions" to sort of mimic the
+// way state is handled in Redux (I find it a little better),
+// while not completely refactoring state to use Redux.
+// >> Some as-of-yet unknown ill effects may result from this, but the technical debt is not overly much <<
+
 // CLEAN STATE AFTER LOGOUT
 export const cleanState = () => {
   return {
@@ -57,6 +62,8 @@ export const editUser = (state, action) => {
     .then(() => {
       console.log('Edit successful');
     });
+    console.log('USER', action.payload.user);
+    console.log('DATA', action.payload.data);
     return {
       ...state,
       userData: {
@@ -124,5 +131,5 @@ export const deletePlant = (state, action) => {
 }
 
 export const addPlant = (state, action) => {
-  // Figure out way to put action here
+  // Figure out way to put action here later
 }

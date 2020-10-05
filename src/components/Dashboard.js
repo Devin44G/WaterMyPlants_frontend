@@ -59,6 +59,7 @@ const Dashboard = props => {
 
   return(
     <div className="dashboard">
+      {/* If user is not logged in, protect dashboard view */}
       {!token ? <h3 style={{backgroundColor:'#8b4444', textDecoration:'none'}}>To view this page, you need to be <a href="/login">LOGGED IN</a></h3> :
       <DashboardContent data={data} editUser={editUser} addPlant={addPlant} user={user} />
       }

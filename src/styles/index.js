@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import img from './../img/wmp-background.jpg';
 
+/*
+TO BE REFACTORED INTO MORE READABLE STYLE NAMES
+- React I dev initially created names for the styled components
+ */
+
 export const Nav = styled.div`
   display: flex;
   flex-direction: row;
