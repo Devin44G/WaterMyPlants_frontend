@@ -7,7 +7,7 @@ import PlantCard from './PlantCard';
 import {PlantAreaIn, PlantAreaOut} from '../styles';
 
 
-const DashboardContent = ({ data, editUser, addPlant }) => {
+const DashboardContent = ({ data, editUser, addPlant, user }) => {
   const { handleSubmit, register } = useForm();
 
   // STYLE MODAL
@@ -46,7 +46,7 @@ const DashboardContent = ({ data, editUser, addPlant }) => {
       </div>
 
       {/* USER'S PLANTS */}
-      <h2>Welcome {data.userData.username}:</h2>
+      <h2>Welcome {user.welcome}:</h2>
       <PlantAreaOut>
         {data.plants.map(plant => (
           <PlantAreaIn key={plant.id}>
